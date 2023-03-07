@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "app-news",
+    "jsEngine": "hermes",
     "slug": "app-news",
     "version": "1.0.0",
     "orientation": "portrait",

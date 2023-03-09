@@ -8,6 +8,8 @@ const PostView = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: rgba(0, 0, 0, 1);
   border-bottom-style: solid;
+  width: 100%;
+
 `;
 
 const PostImage = styled.Image`
@@ -25,15 +27,24 @@ const PostTitle = styled.Text`
 const PostDetails = styled.View`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  flex: 1;
 `;
 
 const PostDate = styled.Text`
+  margin-top: 10px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.4);
 `;
 
+const truncateTitle = (str) => {
+  if (str.length > 50) {
+    return str.substring(0, 50) + '...';
+  }
+  return str
+}
+
 export const Post = ({ title, imageUrl, createdAt }) => {
+  const date = Date(createdAt).toString().slice(4, 21)
   return (
     <PostView>
       <PostImage
@@ -41,8 +52,8 @@ export const Post = ({ title, imageUrl, createdAt }) => {
           uri: imageUrl,
         }}></PostImage>
       <PostDetails>
-        <PostTitle>{title}</PostTitle>
-        <PostDate>{createdAt}</PostDate>
+        <PostTitle>{truncateTitle(title)}</PostTitle>
+        <PostDate>{date}</PostDate>
       </PostDetails>
     </PostView>
   );
